@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 export default function Home() {
   return (
     <div className="flex flex-col h-full justify-between">
@@ -31,9 +33,12 @@ export default function Home() {
       </div>
 
       <div className="flex justify-center w-100 mt-16 relative z-10 gap-4">
-        <button type="button" className="bg-white py-6 px-2 rounded border">
+        <Link
+          to={"/cadastrar-paciente"}
+          className="bg-white py-6 px-2 rounded border"
+        >
           <span className="uppercase font-bold">cadastrar paciente</span>
-        </button>
+        </Link>
 
         <button type="button" className="bg-white p-2 rounded border">
           <span className="uppercase font-bold">pacientes</span>
