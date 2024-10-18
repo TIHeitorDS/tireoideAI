@@ -1,7 +1,7 @@
-import { Link } from "react-router-dom";
-import PatientInput from "../components/PacienteInputs";
 import { useState } from "react";
+import PatientInputs from "../components/PatientInputs";
 import HormoneDataInput from "../components/HormoneDataInput";
+import Navbar from "../components/Navbar";
 
 export default function CadasterPatient() {
   const [isChecked, setIsChecked] = useState(false);
@@ -12,18 +12,19 @@ export default function CadasterPatient() {
 
   return (
     <>
-      <nav className="flex gap-2 bg-blue p-6">
-        <Link to={"/"}>⬅️</Link>
-
-        <p className="text-white font-medium">Cadastrar paciente</p>
-      </nav>
-
-      <div className="w-1/3 p-6">
+      <Navbar page="cadastra paciente" />
+      <div className="w-2/3 p-6 mx-auto">
         <form>
-          <PatientInput />
+          <PatientInputs />
 
           <div className="flex items-center gap-2 my-10">
-            <input type="checkbox" name="data" id="data" checked={isChecked} onChange={onShowHomoneDataInput}/>
+            <input
+              type="checkbox"
+              name="data"
+              id="data"
+              checked={isChecked}
+              onChange={onShowHomoneDataInput}
+            />
             <label htmlFor="data">Paciente possui dados para predição?</label>
           </div>
 

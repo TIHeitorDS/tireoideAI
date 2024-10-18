@@ -1,7 +1,7 @@
 export default function HormoneDataInput() {
   return (
     <>
-      <div className="flex gap-4">
+      <div className="flex flex-wrap gap-4 mb-2">
         <div className="flex flex-col items-start">
           <label htmlFor="tt4" className="text-xs 2xl:text-base mb-1">
             Total T4 (mg/dL)
@@ -76,21 +76,6 @@ export default function HormoneDataInput() {
             />
           </div>
         </div>
-      </div>
-
-      <div className="flex items-center mt-3 mb-10 2xl:mt-6">
-        <input
-          type="checkbox"
-          id="pregnant"
-          name="pregnant"
-          className="w-4 h-4 border-2 border-blue bg-white checked:bg-blue checked:border-0"
-        />
-        <label
-          htmlFor="pregnant"
-          className="ml-3 font-redhat text-xs 2xl:text-xl"
-        >
-          Está grávida?
-        </label>
       </div>
     </>
   );

@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import * as Dialog from "@radix-ui/react-dialog";
 
 export default function Home() {
   return (
@@ -11,7 +12,7 @@ export default function Home() {
         />
 
         <div className="relative z-10 w-1/2 text-white p-8 space-y-12">
-          <h1 className="text-5xl font-bold">TireoidAI</h1>
+          <h1 className="text-5xl font-bold">TireoideAI</h1>
           <p className="mt-4 text-lg">
             Bem-vindo(a),{" "}
             <span className="font-medium">Dr. Heitor Claudino Dantas</span>
@@ -40,16 +41,52 @@ export default function Home() {
           <span className="uppercase font-bold">cadastrar paciente</span>
         </Link>
 
-        <button type="button" className="bg-white p-2 rounded border">
+        <Link to={"/pacientes"} className="bg-white py-6 px-2 rounded border">
           <span className="uppercase font-bold">pacientes</span>
-        </button>
+        </Link>
 
-        <button type="button" className="bg-white p-2 rounded border">
+        <Link
+          to={"/realizar-diagnostico"}
+          className="bg-white py-6 px-2 rounded border"
+        >
           <span className="uppercase font-bold">realizar diagnóstico</span>
-        </button>
+        </Link>
+
+        <Dialog.Root>
+          <Dialog.Trigger asChild>
+            <button className="bg-white p-2 rounded border">
+              <span className="uppercase font-bold">Sobre o modelo de ia</span>
+            </button>
+          </Dialog.Trigger>
+          <Dialog.Portal>
+            <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-30 z-40" />
+            <Dialog.Content className="fixed bg-white p-6 rounded-md shadow-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+              <Dialog.Title>
+                <p className="text-xl font-medium">Sobre o modelo de IA</p>
+              </Dialog.Title>
+              <p className="mt-2">
+                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam,
+                quibusdam ratione eos magnam architecto ea consequatur ipsum
+                pariatur perspiciatis nam perferendis aut dolore inventore
+                distinctio quos accusamus vero tenetur? Maiores?
+              </p>
+
+              <div className="flex justify-end mt-6">
+                <Dialog.Close asChild>
+                  <button
+                    className="bg-red-500 py-2 px-4 rounded rounded-5 text-white"
+                    aria-label="Close"
+                  >
+                    Fechar
+                  </button>
+                </Dialog.Close>
+              </div>
+            </Dialog.Content>
+          </Dialog.Portal>
+        </Dialog.Root>
 
         <button type="button" className="bg-white p-2 rounded border">
-          <span className="uppercase font-bold">sobre o modelo de ia</span>
+          <span className="uppercase font-bold">configurações</span>
         </button>
       </div>
 

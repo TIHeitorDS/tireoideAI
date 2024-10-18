@@ -1,4 +1,4 @@
-export default function PatientInput() {
+export default function PatientInputs() {
   return (
     <>
       <div className="flex flex-col gap-6">
