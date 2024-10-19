@@ -23,14 +23,16 @@ export default function Login() {
           <div className="flex flex-col space-y-6 font-medium">
             <button
               type="button"
-              className="bg-white border-2 rounded-md py-2 w-fit-content"
+              className="flex items-start gap-4 bg-white border-2 rounded-md py-2 px-1 w-fit-content"
             >
+              <img src="Google.png" className="w-6 h-6" alt="" srcset="" />
               Continuar com Google
             </button>
             <button
               type="button"
-              className="bg-blue border-2 text-white rounded py-2 w-fit-content"
+              className="flex items-start gap-4 bg-blue border-2 text-white rounded py-2 px-1 w-fit-content"
             >
+              <img src="Facebook.png" className="w-6 h-6" alt="" srcset="" />
               Continuar com Facebook
             </button>
           </div>

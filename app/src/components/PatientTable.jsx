@@ -1,6 +1,6 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { Link } from "react-router-dom";
-export default function PatientTable() {
+
+export default function PatientTable({ makeDiagnosis }) {
   return (
     <table className="w-full divide-y divide-blue font-semibold text-xs 2xl:text-base mt-6">
       <thead className="bg-[#75BDE43D]">
@@ -22,12 +22,12 @@ export default function PatientTable() {
           <td className="px-6 py-4 whitespace-nowrap">Maria Helena</td>
           <td className="px-6 py-4 whitespace-nowrap">18/10/2024</td>
           <td className="px-6 py-4 whitespace-nowrap flex justify-center items-center gap-4 font-normal">
-            <Link
-              to={`/`}
+            <button
               className="bg-blue rounded text-white text-xs py-[8px] px-[16px] font-redhat"
+              onClick={makeDiagnosis}
             >
               Realizar Diagnóstico
-            </Link>
+            </button>
 
             <Dialog.Root>
               <Dialog.Trigger asChild>
