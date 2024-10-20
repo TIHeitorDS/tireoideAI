@@ -111,7 +111,7 @@ export default function Home() {
 
                   <Link
                     className="bg-blue py-2 px-4 rounded rounded-5 text-white"
-                    to={"/login"}
+                    to={"http://localhost:8000/admin/"}
                   >
                     Área administrativa
                   </Link>

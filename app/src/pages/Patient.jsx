@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import PatientTable from "../components/PatientTable";
+import { useState } from "react";
 
 export default function Patient() {
   return (
