@@ -35,7 +35,7 @@ export default function PatientInputs({ register }) {
         <input
           type="radio"
           id="male"
-          value="M"
+          value={1}
           {...register("gender", { required: true })}
         />
         <label htmlFor="male" className="font-redhat text-sm ml-1 2xl:text-xl">
@@ -45,7 +45,7 @@ export default function PatientInputs({ register }) {
         <input
           type="radio"
           id="female"
-          value="F"
+          value={0}
           className="ml-4"
           {...register("gender", { required: true })}
           required

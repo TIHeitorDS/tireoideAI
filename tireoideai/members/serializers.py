@@ -26,6 +26,7 @@ class PatientSerializer(serializers.ModelSerializer):
             'name',
             'age',
             'sex',
+            'patient_sick',
             'TT4',
             'FTI',
             'T3',

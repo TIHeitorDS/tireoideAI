@@ -13,6 +13,7 @@ export default function MakeDiagnosis() {
   const [showPatients, setShowPatitents] = useState(false);
   const [showDiagnosis, setShowDiagnosis] = useState(false);
   const [patient, setPatient] = useState(null);
+  const [pred, setPred] = useState("");
 
   function onShowHormoneDataInputs() {
     setShowHormoneDataInputs(!showHormoneDataInputs);
@@ -28,6 +29,8 @@ export default function MakeDiagnosis() {
 
   function onShowDiagnosis(id) {
     setShowDiagnosis(!showDiagnosis);
+
+    setPred(onSearchPatient(id).positive);
 
     setPatient(onSearchPatient(id));
 
@@ -82,7 +85,10 @@ export default function MakeDiagnosis() {
               <HormoneDataInput register={register} />
 
               <div className="flex space-x-6">
-                <button type="submit" className="bg-blue py-2 px-12 font-medium text-white upper case">
+                <button
+                  type="submit"
+                  className="bg-blue py-2 px-12 font-medium text-white upper case"
+                >
                   Realizar diagnóstico
                 </button>
 
@@ -137,7 +143,7 @@ export default function MakeDiagnosis() {
                   <span className="font-bold text-xl">
                     Chances de ter a doença:
                   </span>{" "}
-                  14%
+                  {pred ? "Alta" : "Baixa"}
                 </p>
               </div>
             </div>
