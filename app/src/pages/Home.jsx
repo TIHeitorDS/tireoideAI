@@ -1,7 +1,11 @@
 import { Link } from "react-router-dom";
+import useFetchPatient from "../hook/useFetchPatient";
 import * as Dialog from "@radix-ui/react-dialog";
 
 export default function Home() {
+  const { totalPatients, patientsWithTiroid, appointmentsToday } =
+    useFetchPatient();
+
   return (
     <div className="flex flex-col h-full justify-between">
       <div className="relative flex space-x-12">
@@ -111,7 +115,7 @@ export default function Home() {
 
                   <Link
                     className="bg-blue py-2 px-4 rounded rounded-5 text-white"
-                    to={"/login"}
+                    to={"http://localhost:8000/admin/"}
                   >
                     Área administrativa
                   </Link>
@@ -136,17 +140,17 @@ export default function Home() {
       <div className="flex justify-around mx-6 gap-6 pb-8">
         <div>
           <p className="underline font-medium">Total de pacientes</p>
-          <span>2</span>
+          <span>{totalPatients}</span>
         </div>
 
         <div>
           <p className="underline font-medium">Tireoide</p>
-          <span>1</span>
+          <span>{patientsWithTiroid}</span>
         </div>
 
         <div>
           <p className="underline font-medium">Consultas do dia</p>
-          <span>1</span>
+          <span>{appointmentsToday}</span>
         </div>
       </div>
     </div>

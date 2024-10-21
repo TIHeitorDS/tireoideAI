@@ -1,4 +1,4 @@
-export default function HormoneDataInput() {
+export default function HormoneDataInput({ register }) {
   return (
     <>
       <div className="flex flex-wrap gap-4 mb-2">
@@ -12,6 +12,7 @@ export default function HormoneDataInput() {
               id="tt4"
               placeholder="T4 Total"
               autoComplete="off"
+              {...register("tt4", { required: true })}
               className="md:p-2 xl:p-4 2xl:p-6 border rounded border-blue font-redhat w-24 2xl:h-8"
             />
           </div>
@@ -27,6 +28,7 @@ export default function HormoneDataInput() {
               id="fti"
               placeholder="FTI"
               autoComplete="off"
+              {...register("fti", { required: true })}
               className="md:p-2 xl:p-4 2xl:p-6 border rounded border-blue font-redhat w-24 2xl:h-8"
             />
           </div>
@@ -42,6 +44,7 @@ export default function HormoneDataInput() {
               id="t3"
               placeholder="T3"
               autoComplete="off"
+              {...register("t3", { required: true })}
               className="md:p-2 xl:p-4 2xl:p-6 border rounded border-blue font-redhat w-24 2xl:h-8"
             />
           </div>
@@ -57,6 +60,7 @@ export default function HormoneDataInput() {
               id="tsh"
               placeholder="TSH"
               autoComplete="off"
+              {...register("tsh", { required: true })}
               className="md:p-2 xl:p-4 2xl:p-6 border rounded border-blue font-redhat w-24 2xl:h-8"
             />
           </div>
@@ -72,6 +76,7 @@ export default function HormoneDataInput() {
               id="t4u"
               placeholder="T4 Livre"
               autoComplete="off"
+              {...register("t4u", { required: true })}
               className="md:p-2 xl:p-4 2xl:p-6 border rounded border-blue font-redhat w-24 2xl:h-8"
             />
           </div>
