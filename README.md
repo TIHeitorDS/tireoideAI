@@ -24,13 +24,16 @@ Para usar o projero atualmente os seguintes comandos
 
 ```bash
 cd app
+npm install
 npm run dev
 ```
 
 > back
 
 ```bash
+python -m venv .venv
 .venv/Scripts/activate
+pip install -r requirements.txt
 cd tireoideai
 python manage.py runserver
 ```
