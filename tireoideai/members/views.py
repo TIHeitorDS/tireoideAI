@@ -43,8 +43,11 @@ class ThyroidismPrediction(APIView):
                 "error": "Dados do paciente não encontrados."
             }, status=status.HTTP_404_NOT_FOUND)
         
-        model = joblib.load('model.sav')
+        model = joblib.load('../models/RandomForestClassifier.sav')
         df_user_data = pd.DataFrame({
+            'age': [user_data.age],
+            'sex': [user_data.sex],
+            'patient_sick': [user_data.patient_sick],
             'TT4': [user_data.TT4],
             'FTI': [user_data.FTI],
             'T3': [user_data.T3],
@@ -104,13 +107,16 @@ class PatientPredWithNoCadaster(APIView):
                 status=status.HTTP_400_BAD_REQUEST,
             )
         
-        model = joblib.load('model.sav')
+        model = joblib.load('../models/RandomForestClassifier.sav')
         df_user_data = pd.DataFrame({
-            'TT4': [tt4],
-            'FTI': [fti],
-            'T3': [t3],
-            'TSH': [tsh],
-            'T4U': [t4u],
+            'age': [user_data.age],
+            'sex': [user_data.sex],
+            'sick': [user_data.sick],
+            'TT4': [user_data.TT4],
+            'FTI': [user_data.FTI],
+            'T3': [user_data.T3],
+            'TSH': [user_data.TSH],
+            'T4U': [user_data.T4U],
         })
 
         prediction = model.predict(df_user_data)[0]
@@ -141,6 +147,7 @@ def patient_cadaster(request):
         name = request.GET.get('name')
         age = request.GET.get('age')
         sex = request.GET.get('sex')
+        patient_sick = request.GET.get('patient_sick')
         TT4 = request.GET.get('TT4').replace(',', '.')
         FTI = request.GET.get('FTI').replace(',', '.')
         T3 = request.GET.get('T3').replace(',', '.')
@@ -151,6 +158,7 @@ def patient_cadaster(request):
             'name': name,
             'age': age,
             'sex': sex,
+            'patient_sick': patient_sick,
             'TT4': TT4,
             'FTI': FTI,
             'T3': T3,
@@ -200,5 +208,3 @@ class LoginView(APIView):
             'sobrenome': user.last_name,
             'nome_completo': nome_completo,
         }, status=status.HTTP_200_OK)
-
-# user = get_user_model()

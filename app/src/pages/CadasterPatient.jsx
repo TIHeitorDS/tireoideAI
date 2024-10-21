@@ -9,11 +9,12 @@ export default function CadasterPatient() {
   const { register, handleSubmit, setValue, watch, reset } = useForm();
   const isChecked = watch("data", false);
 
-  async function onSubmit(data) {
+  async function onSubmit(data) {   
     const queryParams = new URLSearchParams({
       name: `${data.name} ${data.lastname}`,
       age: data.age,
       sex: data.gender,
+      patient_sick: data.sick,
       TT4: data.tt4 ?? "0",
       FTI: data.fti ?? "0",
       T3: data.t3 ?? "0",

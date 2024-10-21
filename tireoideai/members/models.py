@@ -22,14 +22,23 @@ class Patient(models.Model):
     )
 
     GENDER = (
-        ('M', 'Masculino'),
-        ('F', 'Feminino'),
+        (0, 'F'),
+        (1, 'M'),
     )
 
-    sex = models.CharField(
-        max_length=1,
+    sex = models.IntegerField(
         choices=GENDER,
         verbose_name='Sexo do paciente',
+    )
+
+    SICK = (
+        (1, 'Yes'),
+        (0, 'No'),
+    )
+
+    patient_sick = models.IntegerField(
+        choices=SICK,
+        verbose_name='Paciente possui algum distúrbio de tireoide',
     )
 
     TT4 = models.FloatField(
@@ -74,9 +83,3 @@ class Patient(models.Model):
         verbose_name = 'Paciente'
         verbose_name_plural = 'Pacientes'
         ordering = ['name']
-
-# class User(AbstractUser):
-#     pass
-
-#     def __str__(self):
-#         return self.username
