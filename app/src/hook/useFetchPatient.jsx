@@ -4,7 +4,7 @@ import axios from "axios";
 export default function useFetchPatient() {
   const [patients, setPatients] = useState([]);
   const [totalPatients, setTotalPatients] = useState(0);
-  const [patientsWithHypo, setPatientsWithHypo] = useState(0);
+  const [patientsWithTiroid, setPatientsWithTiroid] = useState(0);
   const [appointmentsToday, setAppointmentsToday] = useState(0);
 
   useEffect(() => {
@@ -15,7 +15,7 @@ export default function useFetchPatient() {
 
         setPatients(data.pacientes);
         setTotalPatients(data.total_pacientes);
-        setPatientsWithHypo(data.pacientes_com_hipo);
+        setPatientsWithTiroid(data.pacientes_com_hipo);
         setPatients(data.pacientes);
         setAppointmentsToday(data.consultas_hoje);
       } catch (error) {
@@ -26,5 +26,5 @@ export default function useFetchPatient() {
     getPatients();
   }, []);
 
-  return { patients, totalPatients, patientsWithHypo, appointmentsToday };
+  return { patients, totalPatients, patientsWithTiroid, appointmentsToday };
 }

@@ -48,6 +48,7 @@ export default function PatientInputs({ register }) {
           value="F"
           className="ml-4"
           {...register("gender", { required: true })}
+          required
         />
         <label
           htmlFor="female"

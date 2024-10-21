@@ -4,6 +4,8 @@ import PatientTable from "../components/PatientTable";
 import { useState } from "react";
 
 export default function Patient() {
+  const [name, setName] = useState("");
+
   return (
     <>
       <Navbar page={"Pacientes"} />
@@ -17,6 +19,8 @@ export default function Patient() {
               name=""
               id=""
               placeholder="Ex: Heitor"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
               className="w-[496px] border border-blue rounded placeholder:text-xs p-2 placeholder:2xl:text-base 2xl:p-4 placeholder:font-semibold 2xl:h-10"
             />
           </div>
@@ -31,7 +35,7 @@ export default function Patient() {
         </div>
 
         <div className="md:w-full md:mt-2 md:mx-auto lg:w-full grow overflow-y-scroll space-y-3.5 mb-14">
-          <PatientTable />
+          <PatientTable searchPatient={name} />
         </div>
       </section>
     </>

@@ -4,11 +4,12 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import PatientInputs from "./PatientInputs";
 import HormoneDataInput from "./HormoneDataInput";
+import { toast } from "sonner";
+import axios from "axios";
 
-export default function PatientTable({ makeDiagnosis, patientName }) {
+export default function PatientTable({ makeDiagnosis, searchPatient }) {
   const { patients } = useFetchPatient();
   const [filteredPatients, setFilteredPatients] = useState([]);
-  const [searchPatient, setSearchPacient] = useState("");
   const { register, handleSubmit, setValue, getValues } = useForm();
 
   useEffect(() => {
@@ -21,21 +22,77 @@ export default function PatientTable({ makeDiagnosis, patientName }) {
 
   function getPatientData(name) {
     const patient = patients.find(
-      (e) => e.nome.toLowerCase() == name.toLowerCase()
+      (e) => e.name.toLowerCase() == name.toLowerCase()
     );
 
-    let firstName = patient.nome.split(" ");
+    let firstName = patient.name.split(" ");
     let lastName = firstName.slice(1).join(" ");
 
     setValue("name", firstName[0]);
     setValue("lastname", lastName);
-    setValue("age", patient.idade);
-    setValue("sex", patient.sexo);
+    setValue("age", patient.age);
+    setValue("sex", patient.sex);
     setValue("tt4", patient.TT4);
     setValue("fti", patient.FTI);
     setValue("t3", patient.T3);
     setValue("tsh", patient.TSH);
     setValue("t4u", patient.T4U);
+  }
+
+  function onEditPatient(id) {
+    const patient = patients.find((e) => e.patient_code == id);
+    const values = getValues();
+    const newName = values.name + " " + values.lastname;
+
+    try {
+      axios.put(`http://localhost:8000/edit_patient/${patient.patient_code}/`, {
+        name: newName,
+        age: values.age,
+        sex: values.sex,
+        TT4: values.tt4,
+        FTI: values.fti,
+        T3: values.t3,
+        TSH: values.tsh,
+        T4U: values.t4u,
+      });
+
+      setFilteredPatients((prevPatients) =>
+        prevPatients.map((p) =>
+          p.patient_code === patient.patient_code
+            ? {
+                ...p,
+                name: newName,
+                age: values.age,
+                sex: values.sex,
+                TT4: values.tt4,
+                FTI: values.fti,
+                T3: values.t3,
+                TSH: values.tsh,
+                T4U: values.t4u,
+              }
+            : p
+        )
+      );
+
+      toast.success("Dados do paciente editados com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao editar dados do paciente!");
+      console.log(error);
+    }
+  }
+
+  async function onDeletePatient(id) {
+    try {
+      axios.delete(`http://localhost:8000/edit_patient/${id}/`);
+
+      setFilteredPatients((prevPatients) =>
+        prevPatients.filter((patient) => patient.cod_paciente !== id)
+      );
+
+      toast.success("Paciente deletado com sucesso!");
+    } catch (error) {
+      toast.error("Erro ao deletar paciente!");
+    }
   }
 
   return (
@@ -64,7 +121,7 @@ export default function PatientTable({ makeDiagnosis, patientName }) {
             <td className="px-6 py-4 whitespace-nowrap flex justify-center items-center gap-4 font-normal">
               <button
                 className="bg-blue rounded text-white text-xs py-[8px] px-[16px] font-redhat"
-                onClick={makeDiagnosis}
+                onClick={() => makeDiagnosis(patient.patient_code)}
               >
                 Realizar Diagnóstico
               </button>
@@ -75,6 +132,7 @@ export default function PatientTable({ makeDiagnosis, patientName }) {
                     type="button"
                     className="w-6"
                     aria-label="Editar paciente"
+                    onClick={() => getPatientData(patient.name)}
                   >
                     <img src="edit.jpg" alt="ícone de edição" />
                   </button>
@@ -109,6 +167,7 @@ export default function PatientTable({ makeDiagnosis, patientName }) {
                         <button
                           type="button"
                           className="bg-blue rounded text-white text-xs 2xl:text-xl py-2 px-4"
+                          onClick={() => onEditPatient(patient.patient_code)}
                         >
                           Salvar edição
                         </button>
@@ -118,7 +177,11 @@ export default function PatientTable({ makeDiagnosis, patientName }) {
                 </Dialog.Portal>
               </Dialog.Root>
 
-              <button type="button" className="w-6">
+              <button
+                type="button"
+                className="w-6"
+                onClick={() => onDeletePatient(patient.patient_code)}
+              >
                 <img src="delete.png" alt="ícone de lixeira" />
               </button>
             </td>
