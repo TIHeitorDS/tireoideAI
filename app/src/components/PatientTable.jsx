@@ -6,11 +6,13 @@ import PatientInputs from "./PatientInputs";
 import HormoneDataInput from "./HormoneDataInput";
 import { toast } from "sonner";
 import axios from "axios";
+import { useLocation } from "react-router-dom";
 
 export default function PatientTable({ makeDiagnosis, searchPatient }) {
   const { patients } = useFetchPatient();
   const [filteredPatients, setFilteredPatients] = useState([]);
   const { register, handleSubmit, setValue, getValues } = useForm();
+  const location = useLocation();
 
   useEffect(() => {
     setFilteredPatients(
@@ -86,7 +88,7 @@ export default function PatientTable({ makeDiagnosis, searchPatient }) {
       axios.delete(`http://localhost:8000/edit_patient/${id}/`);
 
       setFilteredPatients((prevPatients) =>
-        prevPatients.filter((patient) => patient.cod_paciente !== id)
+        prevPatients.filter((patient) => patient.patient_code !== id)
       );
 
       toast.success("Paciente deletado com sucesso!");
@@ -97,15 +99,15 @@ export default function PatientTable({ makeDiagnosis, searchPatient }) {
 
   return (
     <table className="w-full divide-y divide-blue font-semibold text-xs 2xl:text-base mt-6">
-      <thead className="bg-[#75BDE43D]">
+      <thead className="bg-[#5cacc4]">
         <tr>
-          <th className="px-6 py-3 text-center text-xs text-gray-500 tracking-wider">
+          <th className="px-6 py-3 text-center text-xs text-black-500 tracking-wider">
             Nome
           </th>
-          <th className="px-6 py-3 text-center text-xs text-gray-500 tracking-wider">
-            Último diagnóstico
+          <th className="px-6 py-3 text-center text-xs text-black-500 tracking-wider">
+            Data de cadastrado
           </th>
-          <th className="px-6 py-3 text-center text-xs text-gray-500 tracking-wider">
+          <th className="px-6 py-3 text-center text-xs text-black-500 tracking-wider">
             Ações
           </th>
         </tr>
@@ -119,12 +121,14 @@ export default function PatientTable({ makeDiagnosis, searchPatient }) {
               {patient.service_date}
             </td>
             <td className="px-6 py-4 whitespace-nowrap flex justify-center items-center gap-4 font-normal">
-              <button
-                className="bg-blue rounded text-white text-xs py-[8px] px-[16px] font-redhat"
-                onClick={() => makeDiagnosis(patient.patient_code)}
-              >
-                Realizar Diagnóstico
-              </button>
+              {location.pathname == "/realizar-diagnostico" && (
+                <button
+                  className="bg-blue rounded text-white text-xs py-[8px] px-[16px] font-redhat"
+                  onClick={() => makeDiagnosis(patient.patient_code)}
+                >
+                  Realizar Diagnóstico
+                </button>
+              )}
 
               <Dialog.Root>
                 <Dialog.Trigger asChild>

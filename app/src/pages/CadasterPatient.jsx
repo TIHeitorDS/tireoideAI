@@ -39,7 +39,7 @@ export default function CadasterPatient() {
   return (
     <>
       <Navbar page="cadastra paciente" />
-      <div className="w-2/3 p-6 mx-auto">
+      <div className="w-2/5 p-6 mx-auto">
         <form onSubmit={handleSubmit(onSubmit)}>
           <PatientInputs register={register} />
 

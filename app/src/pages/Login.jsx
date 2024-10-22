@@ -9,10 +9,9 @@ export default function Login() {
             </p>
 
             <p className="text-xs">
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi
-              culpa voluptatum atque quam. Eum error odio, cupiditate voluptas
-              quibusdam, repudiandae earum autem, officia vitae quo quas nulla
-              cum eius commodi.
+              Utilizando um modelo de Machine Learning, o sistema realiza
+              predições e exibe os resultados aos médicos, servindo como uma
+              ferramenta de apoio para avaliações clínicas
             </p>
           </div>
         </div>
