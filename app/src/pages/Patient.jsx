@@ -11,9 +11,9 @@ export default function Patient() {
       <Navbar page={"Pacientes"} />
       <section className="p-6">
         <div className="flex flex-col gap-6">
-          <p className="font-semibold lg:text-2xl">Busque por um paciente</p>
+          <p className="font-semibold lg:text-2xl">Informe o nome do paciente</p>
 
-          <div className="mt-4">
+          <div>
             <input
               type="text"
               name=""
@@ -24,7 +24,11 @@ export default function Patient() {
               className="w-[496px] border border-blue rounded placeholder:text-xs p-2 placeholder:2xl:text-base 2xl:p-4 placeholder:font-semibold 2xl:h-10"
             />
           </div>
-          <div>
+          <div className="flex items-center gap-2">
+            <p>
+              O paciente ainda não tem um cadastro?
+            </p>
+
             <Link
               to={"/cadastrar-paciente"}
               className="bg-blue rounded text-white text-xs 2xl:text-base py-[8px] px-[16px]"
@@ -34,7 +38,7 @@ export default function Patient() {
           </div>
         </div>
 
-        <div className="md:w-full md:mt-2 md:mx-auto lg:w-full grow overflow-y-scroll space-y-3.5 mb-14">
+        <div className="md:w-full md:mt-2 md:mx-auto lg:w-full grow space-y-3.5 mb-14">
           <PatientTable searchPatient={name} />
         </div>
       </section>

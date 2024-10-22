@@ -1,10 +1,11 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import Navbar from "../components/Navbar";
 import HormoneDataInput from "../components/HormoneDataInput";
 import PatientTable from "../components/PatientTable";
 import useFetchPatient from "../hook/useFetchPatient";
+import axios from "axios";
+import { toast } from "sonner";
 
 export default function MakeDiagnosis() {
   const { register, handleSubmit } = useForm();
@@ -27,12 +28,28 @@ export default function MakeDiagnosis() {
     if (showDiagnosis) setShowDiagnosis(false);
   }
 
+  async function getPatientPrediction(id) {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/prediction/?patient_code=${id}`
+      );
+      const data = response.data;
+
+      return data;
+    } catch (error) {
+      toast.error("Error ao realizar predição!");
+    }
+  }
+
   function onShowDiagnosis(id) {
     setShowDiagnosis(!showDiagnosis);
 
-    setPred(onSearchPatient(id).positive);
+    const patient = onSearchPatient(id);
 
-    setPatient(onSearchPatient(id));
+    const prediction = getPatientPrediction(patient.patient_code);
+
+    setPatient(patient);
+    setPred(prediction);
 
     if (showPatients) setShowPatitents(false);
     if (showHormoneDataInputs) setShowHormoneDataInputs(false);
@@ -122,7 +139,7 @@ export default function MakeDiagnosis() {
         {showDiagnosis && (
           <div className="space-y-14">
             <p>
-              <span className="font-bold text-2xl">Nome do paciente:</span>{" "}
+              <span className="font-bold text-xl">Nome do paciente:</span>{" "}
               {patient.name}
             </p>
             <div className="flex justify-around">
@@ -144,16 +161,9 @@ export default function MakeDiagnosis() {
                     Chances de ter a doença:
                   </span>{" "}
                   {pred ? "Alta" : "Baixa"}
+                  {console.log(patient)}
                 </p>
               </div>
-            </div>
-            <div>
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eaque
-                suscipit placeat, maxime ex est eius quisquam vero illo
-                excepturi tempora veniam? Laborum, non aliquid. Incidunt
-                praesentium ratione nulla ipsum expedita.
-              </p>
             </div>
             <button
               className="py-2 px-12 border bg-blue p-4 font-medium text-white"

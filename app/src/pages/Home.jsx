@@ -24,10 +24,8 @@ export default function Home() {
 
           <div className="mt-8">
             <p className="text-sm">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry. Lorem Ipsum has been the industry's standard dummy text
-              ever since the 1500s, when an unknown printer took a galley of
-              type and scrambled it to make a type specimen book.
+              Realize predições de forma simples e rápida com o auxílio de um
+              modelo de <span className="font-medium">Machine Learning</span>.
             </p>
           </div>
         </div>
@@ -69,10 +67,16 @@ export default function Home() {
                 <p className="text-xl font-medium">Sobre o modelo de IA</p>
               </Dialog.Title>
               <p className="mt-2">
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quam,
-                quibusdam ratione eos magnam architecto ea consequatur ipsum
-                pariatur perspiciatis nam perferendis aut dolore inventore
-                distinctio quos accusamus vero tenetur? Maiores?
+                Utilizamos um modelo de Machine Learning devolvido pelo grupo de
+                pesquisa <span className="font-medium">CiLab</span>. Para mais
+                informações sobre este modelo clique{" "}
+                <a
+                  className="text-blue"
+                  target="_blanck"
+                  href="https://github.com/cilab-ufersa/euthyroid_sick_syndrome"
+                >
+                  aqui
+                </a>
               </p>
 
               <div className="flex justify-end mt-6">
@@ -99,12 +103,10 @@ export default function Home() {
             <Dialog.Overlay className="fixed inset-0 bg-black bg-opacity-30 z-40" />
             <Dialog.Content className="fixed w-1/2 bg-white p-6 rounded-md shadow-lg top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
               <Dialog.Title>
-                <p className="text-xl font-medium p-2 mb-4">Configurações</p>
+                <p className="text-xl font-medium mb-4">Configurações</p>
               </Dialog.Title>
 
               <div className="flex flex-col gap-5">
-                <p className="font-medium">Conta</p>
-
                 <div className="space-x-6">
                   <Link
                     className="bg-blue py-2 px-4 rounded rounded-5 text-white"
@@ -113,12 +115,13 @@ export default function Home() {
                     Sair do sistema
                   </Link>
 
-                  <Link
+                  <a
                     className="bg-blue py-2 px-4 rounded rounded-5 text-white"
-                    to={"http://localhost:8000/admin/"}
+                    target="_black"
+                    href="http://localhost:8000/admin/"
                   >
                     Área administrativa
-                  </Link>
+                  </a>
                 </div>
               </div>
 
